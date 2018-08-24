@@ -24,7 +24,7 @@ public class SingleLinkedList {
         Add At tail
      */
 
-    public Node AddAtTail(Node node) {
+    public Node addAtTail(Node node) {
         if (head == null) {
             head = node;
             return head;
@@ -82,6 +82,20 @@ public class SingleLinkedList {
 
         while (current != null) {
             if (current.getValue() == val) {
+                return current;
+            }
+            current = current.getNext();
+        }
+
+        return null;
+    }
+
+    public Node search(Node val) {
+
+        Node current = head;
+
+        while (current != null) {
+            if (current.getValue() == val.getValue()) {
                 return current;
             }
             current = current.getNext();
