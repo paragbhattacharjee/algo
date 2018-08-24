@@ -42,4 +42,12 @@ public class AdjacencyList {
             edge.printList();
         });
     }
+
+    public SingleLinkedList getAdjListForVertex(Node vertex) {
+        if (!adjList.containsKey(vertex)) {
+            return null;
+        }
+
+        return adjList.get(vertex);
+    }
 }

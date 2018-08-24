@@ -1,7 +1,10 @@
 package com.practise.algo.entity;
 
+import lombok.Getter;
+
 public class SingleLinkedList {
 
+    @Getter
     private Node head;
 
     /*

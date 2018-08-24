@@ -2,6 +2,7 @@ package com.practise.algo.service.graph;
 
 import com.practise.algo.entity.AdjacencyList;
 import com.practise.algo.entity.Node;
+import com.practise.algo.entity.SingleLinkedList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +27,30 @@ public class bfs {
 
         List<Node> current = new ArrayList<>();
         current.add(vertex);
+
+        List<Node> next;
+        int curLevel = 1;
+
+        while (current.size() > 0) {
+            next = new ArrayList<>();
+
+            for (Node currVertex : current) {
+                SingleLinkedList nextList = adjList.getAdjListForVertex(currVertex);
+
+                Node currEdge = nextList.getHead();
+
+                while (currEdge != null) {
+                    if (!level.containsKey(currEdge)) {
+                        level.put(currEdge, curLevel);
+                        parent.put(currEdge, currVertex);
+                        next.add(currEdge);
+                    }
+                }
+            }
+
+            current = next;
+            curLevel++;
+        }
 
     }
 }
