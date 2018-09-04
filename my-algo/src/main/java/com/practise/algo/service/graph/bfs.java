@@ -9,11 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class bfs {
+public class Bfs {
 
     AdjacencyList adjList;
 
-    bfs (AdjacencyList list) {
+    Bfs (AdjacencyList list) {
         adjList = list;
     }
 
@@ -22,8 +22,8 @@ public class bfs {
      */
     public void traverse(Node vertex) {
 
-        Map<Node, Integer> level = new HashMap<>();
-        Map<Node, Node> parent = new HashMap<>();
+        Map<Integer, Integer> level = new HashMap<>();
+        Map<Integer, Integer> parent = new HashMap<>();
 
         List<Node> current = new ArrayList<>();
         current.add(vertex);
@@ -40,17 +40,22 @@ public class bfs {
                 Node currEdge = nextList.getHead();
 
                 while (currEdge != null) {
-                    if (!level.containsKey(currEdge)) {
-                        level.put(currEdge, curLevel);
-                        parent.put(currEdge, currVertex);
+                    if (!level.containsKey(currEdge.getValue())) {
+                        level.put(currEdge.getValue(), curLevel);
+                        parent.put(currEdge.getValue(), currVertex.getValue());
                         next.add(currEdge);
+
+                        System.out.print(currEdge);
                     }
+                    currEdge = currEdge.getNext();
                 }
             }
 
             current = next;
             curLevel++;
         }
+
+        System.out.println("Hi");
 
     }
 }

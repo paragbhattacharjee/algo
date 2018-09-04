@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class Node {
-    private int value;
+    private Integer value;
     private Node next;
 }

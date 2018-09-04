@@ -2,10 +2,20 @@ package com.practise.algo.entity;
 
 import lombok.Getter;
 
+import java.util.List;
+
 public class SingleLinkedList {
 
     @Getter
     private Node head;
+
+    SingleLinkedList(){}
+
+    SingleLinkedList(List<Node> edges) {
+        for (Node edge: edges) {
+            addAtTail(edge);
+        }
+    }
 
     /*
         Return Head
@@ -119,4 +129,5 @@ public class SingleLinkedList {
         System.out.print("null");
 
     }
+
 }
