@@ -11,8 +11,8 @@ public class SingleLinkedList {
 
     SingleLinkedList(){}
 
-    SingleLinkedList(List<Node> edges) {
-        for (Node edge: edges) {
+    SingleLinkedList(List<Integer> edges) {
+        for (Integer edge: edges) {
             addAtTail(edge);
         }
     }
@@ -37,7 +37,9 @@ public class SingleLinkedList {
         Add At tail
      */
 
-    public Node addAtTail(Node node) {
+    public Node addAtTail(Integer val) {
+
+        Node node = new Node(val);
         if (head == null) {
             head = node;
             return head;

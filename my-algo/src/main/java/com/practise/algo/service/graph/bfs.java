@@ -20,16 +20,20 @@ public class Bfs {
     /*
         Traverse in BFS. Starting from Vertex vertex
      */
-    public void traverse(Node vertex) {
+    public Map<Integer, Integer> traverse(Node vertex) {
 
         Map<Integer, Integer> level = new HashMap<>();
         Map<Integer, Integer> parent = new HashMap<>();
+
+        // Adding the starting node as level 0
+        level.put(vertex.getValue(), 0);
 
         List<Node> current = new ArrayList<>();
         current.add(vertex);
 
         List<Node> next;
         int curLevel = 1;
+
 
         while (current.size() > 0) {
             next = new ArrayList<>();
@@ -55,7 +59,7 @@ public class Bfs {
             curLevel++;
         }
 
-        System.out.println("Hi");
+        return level;
 
     }
 }

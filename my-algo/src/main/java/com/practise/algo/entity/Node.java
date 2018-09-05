@@ -6,4 +6,8 @@ import lombok.Data;
 public class Node {
     private Integer value;
     private Node next;
+
+    public Node(Integer val) {
+        value = val;
+    }
 }

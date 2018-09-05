@@ -11,16 +11,16 @@ public class AdjacencyList {
      */
     Map<Integer, SingleLinkedList> adjList = new HashMap<>();
 
-    public Map<Integer, SingleLinkedList> addVertex(Node vertex) {
+    public Map<Integer, SingleLinkedList> addVertex(Integer vertex) {
 
-        if (!adjList.containsKey(vertex.getValue())) {
-            adjList.put(vertex.getValue(), new SingleLinkedList());
+        if (!adjList.containsKey(vertex)) {
+            adjList.put(vertex, new SingleLinkedList());
         }
 
         return adjList;
     }
 
-    public Map<Integer, SingleLinkedList> addEdgeForVertex(Node vertex, Node edge) {
+    public Map<Integer, SingleLinkedList> addEdgeForVertex(Integer vertex, Integer edge) {
         addVertex(vertex);
 
         SingleLinkedList list = adjList.get(vertex);
@@ -34,15 +34,15 @@ public class AdjacencyList {
         return adjList;
     }
 
-    public Map<Integer, SingleLinkedList> addEdgesForVertex(Node vertex, List<Node> edges) {
+    public Map<Integer, SingleLinkedList> addEdgesForVertex(Integer vertex, List<Integer> edges) {
         addVertex(vertex);
 
-        SingleLinkedList list = adjList.get(vertex.getValue());
+        SingleLinkedList list = adjList.get(vertex);
 
-        for (Node edge : edges) {
+        for (Integer edge : edges) {
 
             if (list == null) {
-                System.out.print("Something Wrong. No defined edges for vertex: " + vertex.getValue());
+                System.out.print("Something Wrong. No defined edges for vertex: " + vertex);
             }
 
             if (list.search(edge) != null) {
