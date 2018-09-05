@@ -5,6 +5,7 @@ import com.practise.algo.entity.Node;
 import com.practise.algo.entity.SingleLinkedList;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Dfs {
@@ -44,11 +45,24 @@ public class Dfs {
 
 
     public Map<Integer, Integer> traverse (Node vertex) {
-        parent.put(vertex.getValue(), 0);
+        if (!parent.containsKey(vertex.getValue())) {
+            parent.put(vertex.getValue(), 0);
+            traversedVertices[counter++] = vertex.getValue();
 
-        dfsVisit(vertex);
+            dfsVisit(vertex);
 
-        printTraversal();
+            printTraversal();
+        }
+
+        return parent;
+    }
+
+    public Map<Integer, Integer> traverseAll() {
+        List<Integer> vertices = adjacencyList.getAllVertices();
+
+        vertices.forEach( (vertex) -> {
+            traverse(new Node(vertex));
+        });
 
         return parent;
     }

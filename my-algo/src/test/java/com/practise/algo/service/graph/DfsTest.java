@@ -36,4 +36,21 @@ public class DfsTest {
 
 
     }
+
+    @Test
+    public void testDfsTraverseAll() {
+
+        AdjacencyList adjacencyList = new AdjacencyList();
+
+        adjacencyList.addEdgesForVertex(1, Lists.newArrayList(2, 3));
+        adjacencyList.addEdgesForVertex(2, Lists.newArrayList(1, 5));
+        adjacencyList.addEdgesForVertex(3, Lists.newArrayList(1, 4));
+        adjacencyList.addEdgesForVertex(4, Lists.newArrayList(3, 5));
+        adjacencyList.addEdgesForVertex(5, Lists.newArrayList(4));
+
+        Dfs testDfs = new Dfs(adjacencyList);
+
+        testDfs.traverseAll();
+
+    }
 }

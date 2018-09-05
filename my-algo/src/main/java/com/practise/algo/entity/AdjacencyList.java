@@ -1,5 +1,8 @@
 package com.practise.algo.entity;
 
+import lombok.Getter;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,5 +71,14 @@ public class AdjacencyList {
         }
 
         return adjList.get(vertex.getValue());
+    }
+
+    public List<Integer> getAllVertices() {
+        List<Integer> vertices = new ArrayList<>();
+        adjList.forEach((vertex, edge) -> {
+            vertices.add(vertex);
+        });
+
+        return vertices;
     }
 }
