@@ -13,6 +13,10 @@ public class Bfs {
 
     AdjacencyList adjList;
 
+    private int[] traversedVertices = new int[20];
+
+    private int counter = 0;
+
     Bfs (AdjacencyList list) {
         adjList = list;
     }
@@ -49,7 +53,7 @@ public class Bfs {
                         parent.put(currEdge.getValue(), currVertex.getValue());
                         next.add(currEdge);
 
-                        System.out.print(currEdge);
+                        traversedVertices[counter++] = currEdge.getValue();
                     }
                     currEdge = currEdge.getNext();
                 }
@@ -59,7 +63,16 @@ public class Bfs {
             curLevel++;
         }
 
+        printTraversal();
         return level;
 
+    }
+
+    public void printTraversal() {
+        System.out.print("BFS Travarsal: ");
+        for(int i = 0; i < counter; i++) {
+            System.out.print(traversedVertices[i] + " ");
+        }
+        System.out.println("");
     }
 }
