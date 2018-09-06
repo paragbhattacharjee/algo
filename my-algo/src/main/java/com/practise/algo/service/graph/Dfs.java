@@ -3,7 +3,9 @@ package com.practise.algo.service.graph;
 import com.practise.algo.entity.AdjacencyList;
 import com.practise.algo.entity.Node;
 import com.practise.algo.entity.SingleLinkedList;
+import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,19 @@ public class Dfs {
 
     private int[] traversedVertices = new int[20];
 
+    private boolean cycle = false;
+
+    public boolean hasCycle() {
+        return cycle;
+    }
+
+    /*
+        To be used for Cycle detection
+        Cycle exists if backward-Edge exists.
+        Backward-Edge can be found while recursing in a DFS.
+     */
+    private List<Integer> recurseTracker = new ArrayList<>();
+
     private int counter = 0;
 
     public Dfs(AdjacencyList adjList) {
@@ -25,12 +40,24 @@ public class Dfs {
     /* Visit from a given vertex. Recursively to all connected vertices */
     private void dfsVisit(Node vertex) {
 
+        /*
+            Add vertex currently being processed (in recursion) to the recursion checker.
+         */
+        addToRecursionTracker(vertex);
+
+
         SingleLinkedList adjVertices = adjacencyList.getAdjListForVertex(vertex);
 
         if (adjVertices != null) {
 
             Node connectedVertex = adjVertices.getHead();
             while (connectedVertex != null) {
+
+                if (nodeAlreadyInRecursion(connectedVertex)) {
+                    System.out.println("Cycle detected. " + vertex.getValue() + "-->" + connectedVertex.getValue());
+                    cycle = true;
+                }
+
                 if (!parent.containsKey(connectedVertex.getValue())) {
                     parent.put(connectedVertex.getValue(), vertex.getValue());
                     traversedVertices[counter++] = connectedVertex.getValue();
@@ -41,6 +68,8 @@ public class Dfs {
                 connectedVertex = connectedVertex.getNext();
             }
         }
+
+        removeFromnRecursionTracker(vertex);
     }
 
 
@@ -74,5 +103,17 @@ public class Dfs {
         }
 
         System.out.println("");
+    }
+
+    private void addToRecursionTracker(Node vertex) {
+        this.recurseTracker.add(vertex.getValue());
+    }
+
+    private void removeFromnRecursionTracker(Node vertex) {
+        recurseTracker.remove(vertex.getValue());
+    }
+
+    private boolean nodeAlreadyInRecursion(Node vertex) {
+         return recurseTracker.contains(vertex.getValue());
     }
 }
